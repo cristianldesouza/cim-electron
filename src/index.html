@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#" class="js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIM</title>
+    <link rel="stylesheet" type="text/css" href="css/dropzone.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2@2.0.0/dist/spectrum.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+
+    <!-- <div class="custom-menu-container">
+       
+        <div class="custom-menu">
+            <div class="custom-title" >
+                <span>Save Config</span>
+            </div>
+
+            <div class="custom-name">
+                <span for="input-custom-name">Nome:</span>
+                <input class="form-control form-control-sm" type="text" id="custom-name" placeholder="">
+            </div>
+
+            <div class="button-container-custom">
+                <button type="button" class="btn btn-outline-success button-custom" id="save-config">Save</button>
+            </div>
+        </div>
+    
+          
+
+        <div class="custom-menu-2">
+            <div class="custom-title" >
+                <span>Load Config</span>
+            </div>
+
+            <div class="custom-name">
+                <span for="input-custom-name">Nome:</span>
+
+                <select class="form-control" id="configs">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    </select>
+            </div>
+
+            <div class="button-container-custom">
+                <button type="button" class="btn btn-outline-success button-custom" id="load-config">Load</button>
+            </div>
+        </div>
+    </div> -->
+
+
+    
+        <div class="first-main-container">
+          <div class="col-sm container-sides" id="container">
+            <div class="custom-menu-container">
+                <div style="display: flex; float: left;">
+                    <span for="input-custom-name">Name:</span>
+                    <input class="form-control form-control-sm custom-input" type="text" id="custom-name" placeholder="">
+                    <button type="button" class="btn btn-outline-success button-custom" id="save-config">Save</button>
+                </div>
+        
+                <div class="d-none custom-container-select" id="load-container">
+                    <span for="input-custom-name" class="custom-name">Name:</span>
+        
+                    <select class="form-control custom-select" id="configs">
+                    </select>
+        
+                    <button type="button" class="btn btn-outline-success button-custom" id="load-config">Load</button>
+                </div>
+            </div>
+            
+            <div>
+                <div class="background-title">
+                    <span>Background Colors Variations: </span>
+                    <select class="selectColors form-control" id="qtdColors">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                </div>
+
+                <div class="menu-container">
+                
+                    <!-- <span class="d-none">Margin: </span>
+                    <input class="form-control input-margin d-none" type="number" value="10" id="margin"> -->
+        
+                    <input id="c1" class="color-picker" value='#276cb8' />
+                    <input id="c2" class="color-picker d-none" value='#f44336' />
+                    <input id="c3" class="color-picker d-none" value='#cc0000' />
+                    <input id="c4" class="color-picker d-none" value='#20124d' />
+                    <input id="c5" class="color-picker d-none" value='#c90076' />
+                    
+                </div>
+            </div>        
+
+
+            <div class="button-container">
+                <button type="button" class="btn btn-primary" id="add-img">Add Bloco</button>
+            </div>
+    
+            
+    
+            
+    
+            <!-- <div class="img-menu-container flex">
+                <div class="img-title" id="img-menu-1">
+                    Bloco #1
+                </div>
+                <div class="color-squire  squire neutral"></div>
+                
+                <button type="button" class="btn btn-dark comp-button">Bloco Comp.</button>
+            </div> -->
+    
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-1">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+    
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-2">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+    
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-3">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+    
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-4">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+    
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-5">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+    
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-6">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+
+
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-7">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+
+
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-8">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+
+
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-9">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+
+
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-10">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-11">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-12">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-13">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-14">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+    
+            <form action="/upload" class="dropzone needsclick dz-clickable d-none both" id="bloco-15">
+                <div class="dz-message needsclick" name="file-teste">
+                    Drop files here or click to upload.
+                </div>        
+            </form>
+
+            <div class="button-container mg-50">
+                <button type="button" id="build-button" class="btn btn-success btn-build d-none">Build!</button>
+            </div>
+            <div class="download-link">
+                <a class="d-none" id="dload">Download</a>
+            </div>
+    
+          </div>
+        
+        </div>
+
+        <div class="second-main-container">
+            <div class="image-container">
+                <div class="image-border" id="img-border">
+                </div>
+            </div>
+        </div>
+    
+
+
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("keydown", function (e) {
+            if (e.which === 123) {
+                require('remote').getCurrentWindow().toggleDevTools();
+            } else if (e.which === 116) {
+                location.reload();
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.4.2/Sortable.min.js"></script>
+    <!-- <script src="vendor/simpleGallery.js-master/dist/simple-gallery.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script> -->
+    <script src="js/interact.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/spectrum-colorpicker2@2.0.0/dist/spectrum.min.js"></script>
+    <script src="js/drop.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/config.js"></script>
+</body>
+</html>

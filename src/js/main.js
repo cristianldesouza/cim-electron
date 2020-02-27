@@ -1,0 +1,506 @@
+const user = makeid(8);
+$(".color-picker").spectrum();
+const { ipcRenderer } = require('electron');
+
+const colors = ['neutral', 'green', 'red', 'indigo', 'yellow', 'black'];
+const secondColors = ['teal', 'thistle', 'tomato'];
+
+let i = 0;
+let imgCount = 0;
+
+$('#qtdColors').on('change', (event) => {
+    
+    for (let i = 2; i <= 5; i++) {
+        $(`#c${i}`).addClass('d-none');
+        $(".color-picker").spectrum();
+    }
+
+    for (let i = 2; i <= event.target.value; i++) {
+        $(`#c${i}`).removeClass('d-none');
+        $(".color-picker").spectrum();
+    }
+
+    let container = $('.menu-container');
+
+    // console.log(event.target.value);
+
+    switch (event.target.value) {
+        case '1':
+            container.css('width', '200px');
+            break;
+        case '2':
+            container.css('width', '350px');
+            break;
+        case '3':
+            container.css('width', '513px');
+            break;
+        case '4': 
+            container.css('width', '665px');
+            break;
+        default:
+            container.css('width', '828px');
+            break;
+    }
+});
+
+$('#add-img').on('click', () => {
+    imgCount++;
+
+    if (imgCount === 1) {
+        $('#build-button').removeClass('d-none');
+        //$('#menu-container').removeClass('d-none');
+    }
+
+    //CREATING IMG BLOCO
+    let container = $('#img-border')[0];
+    let bloco = document.createElement('div');
+    bloco.setAttribute('class', `${colors[i]} new-bloco`);
+    bloco.setAttribute('id', `img-${imgCount}`);
+
+    container.appendChild(bloco);
+
+    
+    // CREATING MENU
+    container = $('#container')[0];
+
+    let menu = document.createElement('div');
+    menu.setAttribute('class', 'img-menu-container');
+    menu.setAttribute('id', `img-menu-container-${imgCount}`);
+
+    let imgTitle = document.createElement('div');
+    imgTitle.setAttribute('id', `img-menu-${imgCount}`)
+    imgTitle.setAttribute('class', `img-title`);
+    imgTitle.innerHTML = `Bloco #${imgCount}`;
+
+    let imgSquare = document.createElement('div');
+    imgSquare.setAttribute('class', `color-squire squire ${colors[i]}`);
+
+    imgTitle.appendChild(imgSquare);
+
+    let clearButton = document.createElement('button');
+    clearButton.setAttribute('id', `clear-bloco-${imgCount}`);
+    clearButton.setAttribute('class', 'btn btn-outline-danger float-right clear-button button-bloco');
+    clearButton.innerHTML = 'Clear';
+
+    
+
+    let deleteButton = document.createElement('button');
+    deleteButton.setAttribute('id', `delete-bloco-${imgCount}`);
+    deleteButton.setAttribute('class', 'btn btn-danger float-right delete-button button-bloco padding-button ');
+    deleteButton.innerHTML = 'X';
+
+    imgTitle.appendChild(deleteButton);
+    imgTitle.appendChild(clearButton);
+
+    menu.appendChild(imgTitle);
+
+    let divContainer = document.createElement('div');
+    
+    let table = document.createElement('table');
+    table.setAttribute('class', 'tablezada');
+    let tbody = document.createElement('tbody');
+
+    let tr = document.createElement('tr');
+    let td = document.createElement('td');
+    td.innerHTML = 'Altura';
+    tr.appendChild(td);
+    td = document.createElement('td');
+    let tdInput = document.createElement('input');
+    tdInput.setAttribute('id', `height-bloco-${imgCount}`);
+    tdInput.setAttribute('class', 'form-control input-size');
+    tdInput.setAttribute('type', 'number');
+    tdInput.setAttribute('value', '25');
+    td.appendChild(tdInput);
+    tr.appendChild(td);
+    tbody.appendChild(tr)
+
+    tr = document.createElement('tr');
+    td = document.createElement('td');
+    td.innerHTML = 'Largura';
+    tr.appendChild(td);
+    td = document.createElement('td');
+    tdInput = document.createElement('input');
+    tdInput.setAttribute('id', `width-bloco-${imgCount}`);
+    tdInput.setAttribute('class', 'form-control input-size');
+    tdInput.setAttribute('type', 'number');
+    tdInput.setAttribute('value', '25');
+    td.appendChild(tdInput);
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+
+    table.appendChild(tbody);
+    divContainer.appendChild(table)
+    menu.appendChild(divContainer);
+
+    divContainer = document.createElement('div');
+    table = document.createElement('table');
+    table.setAttribute('class', 'tablezada');
+    tbody = document.createElement('tbody');
+
+
+    tr = document.createElement('tr');
+    td = document.createElement('td');
+    td.innerHTML = 'Margem Topo';
+    tr.appendChild(td);
+    td = document.createElement('td');
+    tdInput = document.createElement('input');
+    tdInput.setAttribute('id', `magin-top-bloco-${imgCount}`);
+    tdInput.setAttribute('class', 'form-control input-margin-menu-option');
+    tdInput.setAttribute('type', 'number');
+    tdInput.setAttribute('value', '10');
+    td.appendChild(tdInput);
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+
+    tr = document.createElement('tr');
+    td = document.createElement('td');
+    td.innerHTML = 'Margem Bot';
+    tr.appendChild(td);
+    td = document.createElement('td');
+    tdInput = document.createElement('input');
+    tdInput.setAttribute('id', `magin-bottom-bloco-${imgCount}`);
+    tdInput.setAttribute('class', 'form-control input-margin-menu-option');
+    tdInput.setAttribute('type', 'number');
+    tdInput.setAttribute('value', '10');
+
+    td.appendChild(tdInput);
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+
+    table.appendChild(tbody);
+    divContainer.appendChild(table)
+    menu.appendChild(divContainer);
+
+    divContainer = document.createElement('div');
+    table = document.createElement('table');
+    table.setAttribute('class', 'tablezada');
+    table.setAttribute('id', `last-table-bloco-${imgCount}`);
+    tbody = document.createElement('tbody');
+
+
+    tr = document.createElement('tr');
+    td = document.createElement('td');
+    td.innerHTML = 'Margem Left';
+    tr.appendChild(td);
+    td = document.createElement('td');
+    tdInput = document.createElement('input');
+    tdInput.setAttribute('id', `magin-left-bloco-${imgCount}`);
+    tdInput.setAttribute('class', 'form-control input-margin-menu-option');
+    tdInput.setAttribute('type', 'number');
+    tdInput.setAttribute('value', '10');
+    td.appendChild(tdInput);
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+
+    tr = document.createElement('tr');
+    td = document.createElement('td');
+    td.innerHTML = 'Margem Right';
+    tr.appendChild(td);
+    td = document.createElement('td');
+    tdInput = document.createElement('input');
+    tdInput.setAttribute('id', `magin-right-bloco-${imgCount}`);
+    tdInput.setAttribute('class', 'form-control input-margin-menu-option');
+    tdInput.setAttribute('type', 'number');
+    tdInput.setAttribute('value', '10');
+    td.appendChild(tdInput);
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+
+    table.appendChild(tbody);
+    divContainer.appendChild(table)
+    menu.appendChild(divContainer);
+
+    
+    
+    // CREATING FORM UPLOAD
+    let form = document.createElement('form');
+    form.setAttribute('action', '/upload');
+    form.setAttribute('class', 'dropzone needsclick dz-clickable');
+    form.setAttribute('id', `upload-${imgCount}`);
+    
+    container = $('#container')[0];;
+    
+    $(`#bloco-${imgCount}`).removeClass('d-none');
+    container.insertBefore(menu, $(`#bloco-${imgCount}`)[0])
+ 
+    $(`#img-${imgCount}`)[0].innerHTML = `${$(`#img-${imgCount}`)[0].offsetHeight}x${$(`#img-${imgCount}`)[0].offsetWidth}`;
+
+    i++;
+    if (i === 6) {
+        i = 0;
+    }
+
+    makeSizeEvent();
+    makeMarginEvent();
+    makeClearEvent(imgCount);
+    makeDeleteEvent();
+    switchElements($(`#last-table-bloco-${imgCount}`)[0], $(`#bloco-${imgCount}`)[0])
+
+    $(`#height-bloco-${imgCount}`).trigger('change');
+    $(`#width-bloco-${imgCount}`).trigger('change');
+    $(`#magin-top-bloco-${imgCount}`).trigger('change');
+    $(`#magin-left-bloco-${imgCount}`).trigger('change');
+    $(`#magin-right-bloco-${imgCount}`).trigger('change');
+    $(`#magin-bottom-bloco-${imgCount}`).trigger('change');
+
+});
+
+function createBloco(bloco, eixoX, eixoY) {
+    let target = $(`#${bloco}`)[0];
+        // keep the dragged position in the data-x/data-y attributes
+    x = parseFloat(eixoX);
+    y = parseFloat(eixoY);
+
+    // translate the element
+    target.style.webkitTransform =
+    target.style.transform =
+      'translate(' + x + 'px, ' + y + 'px)';
+
+    // update the posiion attributes
+    target.setAttribute('data-x', x);
+    target.setAttribute('data-y', y);
+  }
+
+function applyConfig(urlId, sizeName, repeatId) {
+    let URL = $(`#${urlId}`).val();
+    let repeat = $(`#${repeatId}`).is(":checked");
+    let size = $(`input[name='${sizeName}']:checked`).val();
+
+
+    $('#img-1').css("background-image", `url(${URL})`);
+    $('#img-1').css('background-size', size);
+    
+    if (repeat) {
+        $('#img-1').css('background-repeat', 'repeat');
+    } else {
+        $('#img-1').css('background-repeat', 'no-repeat');
+    }
+    return;
+}
+
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+ }
+
+function sleep(ms) {
+   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function getSquireSize(element) {
+    let height = document.getElementById(element).offsetHeight;
+    let width = document.getElementById(element).offsetWidth;
+
+    height = (height)*100/540;
+    width = (width)*100/540;
+
+    return {h: height, w: width};
+}
+
+function makeSizeEvent() {
+    return $('.input-size').on('change', (event) => {
+        let inputId = event.target.id.split('-')[2];
+        let bloco = $(`#img-${inputId}`);
+        let isHeight = event.target.id.split('-')[0] == 'height'?true:false;
+        let size = $(`#${event.target.id}`).val();
+
+        
+
+
+        if (isHeight) {
+            let marginTop = $(`#magin-top-bloco-${inputId}`).val();
+            let marginBot = $(`#magin-bottom-bloco-${inputId}`).val();
+            let realMargin = parseFloat(marginTop) + parseFloat(marginBot); 
+
+            bloco.css('height', `calc(${size}% - ${realMargin}px)`);
+            
+            bloco[0].innerHTML = `${bloco[0].offsetHeight}x${bloco[0].offsetWidth}`
+            bloco.css('line-height', `calc(${bloco[0].offsetHeight}px - 20px)`);
+        } else {
+            let marginLeft = $(`#magin-left-bloco-${inputId}`).val();
+            let marginRight = $(`#magin-right-bloco-${inputId}`).val();
+
+            let realMargin = parseFloat(marginLeft) + parseFloat(marginRight); 
+
+            bloco.css('width', `calc(${size}% - ${realMargin}px)`);
+            bloco[0].innerHTML = `${bloco[0].offsetHeight}x${bloco[0].offsetWidth}`
+            bloco.css('line-height', `calc(${bloco[0].offsetHeight}px - 20px)`);
+        }
+
+    });
+}
+
+function makeMarginEvent() {
+    return $('.input-margin-menu-option').on('change', (event) => {
+        let inputId = event.target.id.split('-')[3];
+        let bloco = $(`#img-${inputId}`);
+        let marginOf = event.target.id.split('-')[1];
+        let value = event.target.value;
+
+        switch(marginOf) {
+            case 'top':
+                bloco.css('margin-top', `${value}px`);
+                $(`#height-bloco-${inputId}`).trigger('change');
+                break;
+            case 'right':
+                bloco.css('margin-right', `${value}px`);
+                $(`#width-bloco-${inputId}`).trigger('change');
+                break;
+            case 'bottom':
+                bloco.css('margin-bottom', `${value}px`);
+                $(`#height-bloco-${inputId}`).trigger('change');
+                break;
+            case 'left':
+                bloco.css('margin-left', `${value}px`);
+                $(`#width-bloco-${inputId}`).trigger('change');
+                break;
+            default:
+                bloco.css('margin-bottom', `${value}px`);
+                $(`#width-bloco-${inputId}`).trigger('change');
+                break;
+        }
+    });
+}
+
+function switchElements($ele1, $ele2) {
+    $ele1.after($ele2);
+}
+
+function makeClearEvent(id) {
+    return $(`#clear-bloco-${id}`).on('click', (event) => {
+        let blocoN = event.target.id.split('-')[2];
+        let formImages = $(`#bloco-${blocoN} > div.dz-preview.dz-processing.dz-image-preview.dz-success.dz-complete`);
+
+        if (formImages[0]) {
+            formImages.remove();
+        } 
+
+        $(`#bloco-${id}`).css('cursor', 'wait');
+        $(`#bloco-${id}`).prop("disabled",true)
+
+        let form = $(`#bloco-${blocoN}`);
+
+        form.removeClass('dz-started');    
+
+
+    // fetch('/delete-bloco/', {
+    //     method: 'POST',
+    //     headers: { 
+    //         'Content-Type': 'application/json', 
+    //         'user': user,
+    //         'bloco': `bloco-${blocoN}`
+    //     },
+    //     body: ''
+    // })
+    // .then((response) => {
+    //     if (response.status == 200) {
+    //         return response.json()
+    //             .then((body) => {
+    //                // $(`#img-menu-container-${id}`).css('cursor', '');
+    //             });
+    //     } else {
+    //         console.log('erro na requisição');
+    //     }
+    // })
+    // .catch();
+    
+    });
+}
+
+function makeDeleteEvent() {
+    return $('.delete-button').on('click', (event) => {
+        let blocoN = event.target.id.split('-')[2];
+
+        $(`#clear-bloco-${blocoN}`).trigger('click');
+
+        $(`#img-${blocoN}`).remove();
+        $(`#img-menu-container-${blocoN}`).remove();
+    });
+}
+
+$('#build-button').on('click', () => {
+    $('#build-button').attr('disabled', true);
+    $('body').css('cursor', 'wait');
+
+    $('#dload').addClass('d-none');
+
+    $('#build-button').css('background-color', '#848484');
+
+    let blocos = [];
+    let qtdBlocos = $('.img-title').length;
+    
+    let colors = [];
+
+    for (let i = 0; i < $('#qtdColors').val(); i++) {
+        colors[i] = $(`#c${i+1}`).val();
+    }
+
+    for (let i = 0; i < qtdBlocos; i++) {
+        if (!$(`#bloco-${i + 1} > div.dz-preview.dz-processing.dz-image-preview.dz-success.dz-complete`)[0]) {
+            $('#build-button').attr('disabled', false);
+            $('body').css('cursor', '');
+            $('#build-button').css('background-color', '#28a745');
+            return alert('Não deve haver blocos vazios')
+        }
+    }
+
+
+    for (let i = 1; i <= qtdBlocos; i++) {
+        let blocoSize = getSquireSize(`img-${i}`);
+        let blocoHeight = $(`#height-bloco-${i}`).val()?$(`#height-bloco-${i}`).val():blocoSize.h;
+        let blocoWidth = $(`#width-bloco-${i}`).val()?$(`#width-bloco-${i}`).val():blocoSize.w;
+        let blocoMarginLeft = $(`#magin-left-bloco-${i}`).val();
+        let blocoMarginRight = $(`#magin-right-bloco-${i}`).val();
+        let blocoMarginTop = $(`#magin-top-bloco-${i}`).val();
+        let blocoMarginBottom = $(`#magin-bottom-bloco-${i}`).val();
+
+        let objBloco = {};
+        //objBloco.id = i;
+        objBloco.id = `bloco-${i}`;
+
+        objBloco.height = blocoHeight;
+        objBloco.width = blocoWidth;
+        objBloco.marginLeft = blocoMarginLeft;
+        objBloco.marginRight = blocoMarginRight;
+        objBloco.marginTop = blocoMarginTop;
+        objBloco.marginBot = blocoMarginBottom;
+
+        blocos.push(objBloco);
+    }
+
+    fetch('/build-imgs/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'user': user },
+        body: JSON.stringify({blocos: blocos, background: colors})
+    })
+    .then((response) => {
+        if (response.status == 200) {
+            return response.json()
+                .then((body) => {
+                    let localUrl = window.location.href;
+
+                    if (localUrl.substring(localUrl.length - 1,  localUrl.length) === '/') {
+                        localUrl = localUrl.substring(0, localUrl.length - 1);
+                    }
+
+                    $('#dload').attr("href", `${localUrl}${body.download}`);
+
+                    $('#dload').removeClass("d-none");
+
+                    $('#build-button').attr('disabled', false);
+                    $('body').css('cursor', '');
+                    $('#build-button').css('background-color', '#28a745');
+
+                    window.scrollTo(0,document.body.scrollHeight);
+                });
+        } else {
+            console.log('erro na requisição');
+        }
+    })
+    .catch();
+});

@@ -1,0 +1,62 @@
+{
+  "configs": [
+    {
+      "name": "testeUm",
+      "config": {
+        "bckVariations": "1",
+        "bckVariationColors": [
+          "#276cb8"
+        ],
+        "blocos": [
+          {
+            "heightPercent": "25",
+            "widthPercent": "25",
+            "marginTop": "10",
+            "marginRight": "10",
+            "marginBot": "10",
+            "marginLeft": "10",
+            "divImg": "<div class=\"neutral new-bloco\" id=\"img-1\" style=\"height: calc(25% - 20px); line-height: calc(230px); width: calc(25% - 20px); margin: 10px;\">250x250</div>"
+          },
+          {
+            "heightPercent": "25",
+            "widthPercent": "25",
+            "marginTop": "10",
+            "marginRight": "10",
+            "marginBot": "10",
+            "marginLeft": "10",
+            "divImg": "<div class=\"green new-bloco\" id=\"img-2\" style=\"height: calc(25% - 20px); line-height: calc(230px); width: calc(25% - 20px); margin: 10px;\">250x250</div>"
+          },
+          {
+            "heightPercent": "25",
+            "widthPercent": "25",
+            "marginTop": "10",
+            "marginRight": "10",
+            "marginBot": "10",
+            "marginLeft": "10",
+            "divImg": "<div class=\"red new-bloco\" id=\"img-3\" style=\"height: calc(25% - 20px); line-height: calc(230px); width: calc(25% - 20px); margin: 10px;\">250x250</div>"
+          }
+        ]
+      }
+    },
+    {
+      "name": "testeDois",
+      "config": {
+        "bckVariations": "1",
+        "bckVariationColors": [
+          "#276cb8"
+        ],
+        "blocos": [
+          {
+            "heightPercent": "25",
+            "widthPercent": "25",
+            "marginTop": "10",
+            "marginRight": "10",
+            "marginBot": "10",
+            "marginLeft": "10",
+            "divImg": "<div class=\"neutral new-bloco\" id=\"img-1\" style=\"height: calc(25% - 20px); line-height: calc(230px); width: calc(25% - 20px); margin: 10px;\">250x250</div>"
+          }
+        ]
+      }
+    }
+  ]
+}

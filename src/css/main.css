@@ -1,0 +1,337 @@
+body, html {
+    background-color: #E8E9EC;
+}
+
+html {
+    margin: 0;
+    padding: -10px;
+}
+
+body {
+    height: 100%;
+    transform: scale(0.8); 
+}
+
+.new-bloco {
+    float: left;
+    background-size:cover; 
+    text-align: center;
+    color: white;
+}
+
+.text-header {
+    width: 100%;
+}
+
+.out-container {
+    height: 100%;
+}
+
+.first-main-container {
+    float: left; 
+    width: 50%;
+}
+
+.second-main-container {
+    float: left; 
+    width: 50%;
+    height: 100%;
+}
+
+.custom-menu-container {
+    z-index: 3;
+    height: 70px;
+    display: block;
+    padding: 15px;
+}
+
+.custom-menu {
+    margin-right: 150px;
+    padding: 15px;
+    width: 300px;
+    border: 1px solid black;
+    border-radius: 5px;
+    
+    margin-left: 20%;
+    margin-top: 160px;
+}
+
+.custom-container-select {
+    display: flex; 
+    float: right;
+    max-width: 450px;
+}
+
+.custom-input {
+    width: auto;
+    margin-left: 15px;
+}
+
+.custom-menu-2 {
+    margin-right: 150px;
+    padding: 15px;
+    width: 300px;
+    border: 1px solid black;
+    border-radius: 5px;
+    
+    margin-left: 20%;
+    margin-top: 30px;
+}
+
+.custom-title {
+    display: flex;
+    margin-left: 30px;
+}
+
+.custom-name {
+    margin-right: 15px;
+}
+
+.image-container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.image-border {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border: 1px solid black;
+    height: 1082px;
+    width: 1082px;
+}
+
+.neutral {
+    background-color: #29e;
+}
+
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
+}
+
+.black {
+    background-color: black;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.indigo {
+    background-color: indigo;
+}
+
+.teal {
+    background-color: teal;
+}
+
+.thistle {
+    background-color: thistle;
+}
+
+.tomato {
+    background-color: tomato;
+}
+
+.resize-drag {
+    height: 100px;
+    width: 100px;
+}
+
+.flex {
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.comp-button {
+    margin-left: auto;
+    height: 30px;
+    font-size: 15px;
+    align-items: center;
+    padding: 5px;
+}
+
+.d-none {
+    display: none;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.download-link {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.mg-50 {
+    margin-top: 50px;
+}
+
+.btn-build {
+    width: 150px;
+}
+
+.float-right {
+    float: right;
+}
+
+.delete-button {
+    margin-left: 8px;
+}
+
+.menu-container {
+    width: 200px;
+    padding-right: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 60px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #d8d8d8;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    margin-bottom: 50px;
+}
+
+.input-margin {
+    width: 100px;
+    margin-left: 15px;
+    margin-right: 80px;
+    height: 40px;
+}
+
+.selectColors {
+    height: 40px;
+    width: 80px;
+    display: initial;
+    
+}
+
+.input-margin-menu {
+    width: 100px;
+    margin-left: 15px;
+    margin-right: 15px;
+    height: 40px;
+}
+
+.input-margin-menu-option {
+    width: 80px;
+    margin-left: 15px;
+    margin-right: 15px;
+    height: 40px;
+}
+
+.input-size {
+    width: 98px;
+    height: 40px;
+    margin-left: 15px;
+}
+
+.special-one {
+    margin-left: 0px;
+}
+
+.x-span {
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 5px;
+}
+
+.background-title {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.sp-colorize {
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+}
+
+.spectrum.with-add-on {
+    width: 100px;
+    padding-left: 5px !important;
+}
+
+#add-img {
+    margin-bottom: 30px;
+}
+
+
+.button-bloco {
+    height: 35px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    size: 8px;
+}
+
+.sp-colorize-container {
+    border: none !important;
+    margin-right: 10px !important;
+    margin-left: 10px !important;
+}
+
+.margin-span {
+    margin-left: 15px;
+}
+
+.container {
+    margin-bottom: 20px;
+    z-index: 2;
+    margin-top: 20px;
+}
+
+.button-container-custom {
+    text-align: center;
+}
+
+.button-custom {
+    width: 100px;
+    margin-left: 15px;
+    height: 40px;
+    justify-content: center;
+}
+
+.img-menu-container {
+    border: 1px solid #d8d8d8;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.img-title {
+    clear: both;
+    width: 100%;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.squire {
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin-right: 15px;
+    float: left;
+}
+
+.tablezada { 
+    margin: 15px;
+    width: 250px;
+    display: block;
+    float: left;
+}
+
+.both {
+    clear: both;
+}
