@@ -1,5 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
-
+const { app, BrowserWindow, ipcMain, remote } = require('electron');
 
 function createWindow () {
   // Cria uma janela de navegação.

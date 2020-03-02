@@ -7,6 +7,7 @@ const secondColors = ['teal', 'thistle', 'tomato'];
 
 let i = 0;
 let imgCount = 0;
+let blocos = [];
 
 $('#qtdColors').on('change', (event) => {
     
@@ -144,7 +145,7 @@ $('#add-img').on('click', () => {
     tr.appendChild(td);
     td = document.createElement('td');
     tdInput = document.createElement('input');
-    tdInput.setAttribute('id', `magin-top-bloco-${imgCount}`);
+    tdInput.setAttribute('id', `margin-top-bloco-${imgCount}`);
     tdInput.setAttribute('class', 'form-control input-margin-menu-option');
     tdInput.setAttribute('type', 'number');
     tdInput.setAttribute('value', '10');
@@ -158,7 +159,7 @@ $('#add-img').on('click', () => {
     tr.appendChild(td);
     td = document.createElement('td');
     tdInput = document.createElement('input');
-    tdInput.setAttribute('id', `magin-bottom-bloco-${imgCount}`);
+    tdInput.setAttribute('id', `margin-bottom-bloco-${imgCount}`);
     tdInput.setAttribute('class', 'form-control input-margin-menu-option');
     tdInput.setAttribute('type', 'number');
     tdInput.setAttribute('value', '10');
@@ -184,7 +185,7 @@ $('#add-img').on('click', () => {
     tr.appendChild(td);
     td = document.createElement('td');
     tdInput = document.createElement('input');
-    tdInput.setAttribute('id', `magin-left-bloco-${imgCount}`);
+    tdInput.setAttribute('id', `margin-left-bloco-${imgCount}`);
     tdInput.setAttribute('class', 'form-control input-margin-menu-option');
     tdInput.setAttribute('type', 'number');
     tdInput.setAttribute('value', '10');
@@ -198,7 +199,7 @@ $('#add-img').on('click', () => {
     tr.appendChild(td);
     td = document.createElement('td');
     tdInput = document.createElement('input');
-    tdInput.setAttribute('id', `magin-right-bloco-${imgCount}`);
+    tdInput.setAttribute('id', `margin-right-bloco-${imgCount}`);
     tdInput.setAttribute('class', 'form-control input-margin-menu-option');
     tdInput.setAttribute('type', 'number');
     tdInput.setAttribute('value', '10');
@@ -234,49 +235,19 @@ $('#add-img').on('click', () => {
     makeMarginEvent();
     makeClearEvent(imgCount);
     makeDeleteEvent();
-    switchElements($(`#last-table-bloco-${imgCount}`)[0], $(`#bloco-${imgCount}`)[0])
+    switchElements($(`#last-table-bloco-${imgCount}`)[0], $(`#bloco-${imgCount}`)[0]);
+    blocos.push({ id: `bloco-${imgCount}` });
+
 
     $(`#height-bloco-${imgCount}`).trigger('change');
     $(`#width-bloco-${imgCount}`).trigger('change');
-    $(`#magin-top-bloco-${imgCount}`).trigger('change');
-    $(`#magin-left-bloco-${imgCount}`).trigger('change');
-    $(`#magin-right-bloco-${imgCount}`).trigger('change');
-    $(`#magin-bottom-bloco-${imgCount}`).trigger('change');
+    $(`#margin-top-bloco-${imgCount}`).trigger('change');
+    $(`#margin-left-bloco-${imgCount}`).trigger('change');
+    $(`#margin-right-bloco-${imgCount}`).trigger('change');
+    $(`#margin-bottom-bloco-${imgCount}`).trigger('change');
 
 });
 
-function createBloco(bloco, eixoX, eixoY) {
-    let target = $(`#${bloco}`)[0];
-        // keep the dragged position in the data-x/data-y attributes
-    x = parseFloat(eixoX);
-    y = parseFloat(eixoY);
-
-    // translate the element
-    target.style.webkitTransform =
-    target.style.transform =
-      'translate(' + x + 'px, ' + y + 'px)';
-
-    // update the posiion attributes
-    target.setAttribute('data-x', x);
-    target.setAttribute('data-y', y);
-  }
-
-function applyConfig(urlId, sizeName, repeatId) {
-    let URL = $(`#${urlId}`).val();
-    let repeat = $(`#${repeatId}`).is(":checked");
-    let size = $(`input[name='${sizeName}']:checked`).val();
-
-
-    $('#img-1').css("background-image", `url(${URL})`);
-    $('#img-1').css('background-size', size);
-    
-    if (repeat) {
-        $('#img-1').css('background-repeat', 'repeat');
-    } else {
-        $('#img-1').css('background-repeat', 'no-repeat');
-    }
-    return;
-}
 
 function makeid(length) {
     var result           = '';
@@ -313,8 +284,8 @@ function makeSizeEvent() {
 
 
         if (isHeight) {
-            let marginTop = $(`#magin-top-bloco-${inputId}`).val();
-            let marginBot = $(`#magin-bottom-bloco-${inputId}`).val();
+            let marginTop = $(`#margin-top-bloco-${inputId}`).val();
+            let marginBot = $(`#margin-bottom-bloco-${inputId}`).val();
             let realMargin = parseFloat(marginTop) + parseFloat(marginBot); 
 
             bloco.css('height', `calc(${size}% - ${realMargin}px)`);
@@ -322,8 +293,8 @@ function makeSizeEvent() {
             bloco[0].innerHTML = `${bloco[0].offsetHeight}x${bloco[0].offsetWidth}`
             bloco.css('line-height', `calc(${bloco[0].offsetHeight}px - 20px)`);
         } else {
-            let marginLeft = $(`#magin-left-bloco-${inputId}`).val();
-            let marginRight = $(`#magin-right-bloco-${inputId}`).val();
+            let marginLeft = $(`#margin-left-bloco-${inputId}`).val();
+            let marginRight = $(`#margin-right-bloco-${inputId}`).val();
 
             let realMargin = parseFloat(marginLeft) + parseFloat(marginRight); 
 
@@ -422,85 +393,3 @@ function makeDeleteEvent() {
         $(`#img-menu-container-${blocoN}`).remove();
     });
 }
-
-$('#build-button').on('click', () => {
-    $('#build-button').attr('disabled', true);
-    $('body').css('cursor', 'wait');
-
-    $('#dload').addClass('d-none');
-
-    $('#build-button').css('background-color', '#848484');
-
-    let blocos = [];
-    let qtdBlocos = $('.img-title').length;
-    
-    let colors = [];
-
-    for (let i = 0; i < $('#qtdColors').val(); i++) {
-        colors[i] = $(`#c${i+1}`).val();
-    }
-
-    for (let i = 0; i < qtdBlocos; i++) {
-        if (!$(`#bloco-${i + 1} > div.dz-preview.dz-processing.dz-image-preview.dz-success.dz-complete`)[0]) {
-            $('#build-button').attr('disabled', false);
-            $('body').css('cursor', '');
-            $('#build-button').css('background-color', '#28a745');
-            return alert('Não deve haver blocos vazios')
-        }
-    }
-
-
-    for (let i = 1; i <= qtdBlocos; i++) {
-        let blocoSize = getSquireSize(`img-${i}`);
-        let blocoHeight = $(`#height-bloco-${i}`).val()?$(`#height-bloco-${i}`).val():blocoSize.h;
-        let blocoWidth = $(`#width-bloco-${i}`).val()?$(`#width-bloco-${i}`).val():blocoSize.w;
-        let blocoMarginLeft = $(`#magin-left-bloco-${i}`).val();
-        let blocoMarginRight = $(`#magin-right-bloco-${i}`).val();
-        let blocoMarginTop = $(`#magin-top-bloco-${i}`).val();
-        let blocoMarginBottom = $(`#magin-bottom-bloco-${i}`).val();
-
-        let objBloco = {};
-        //objBloco.id = i;
-        objBloco.id = `bloco-${i}`;
-
-        objBloco.height = blocoHeight;
-        objBloco.width = blocoWidth;
-        objBloco.marginLeft = blocoMarginLeft;
-        objBloco.marginRight = blocoMarginRight;
-        objBloco.marginTop = blocoMarginTop;
-        objBloco.marginBot = blocoMarginBottom;
-
-        blocos.push(objBloco);
-    }
-
-    fetch('/build-imgs/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'user': user },
-        body: JSON.stringify({blocos: blocos, background: colors})
-    })
-    .then((response) => {
-        if (response.status == 200) {
-            return response.json()
-                .then((body) => {
-                    let localUrl = window.location.href;
-
-                    if (localUrl.substring(localUrl.length - 1,  localUrl.length) === '/') {
-                        localUrl = localUrl.substring(0, localUrl.length - 1);
-                    }
-
-                    $('#dload').attr("href", `${localUrl}${body.download}`);
-
-                    $('#dload').removeClass("d-none");
-
-                    $('#build-button').attr('disabled', false);
-                    $('body').css('cursor', '');
-                    $('#build-button').css('background-color', '#28a745');
-
-                    window.scrollTo(0,document.body.scrollHeight);
-                });
-        } else {
-            console.log('erro na requisição');
-        }
-    })
-    .catch();
-});

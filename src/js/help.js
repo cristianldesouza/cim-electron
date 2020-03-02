@@ -2,36 +2,9 @@ const fs = require('fs');
 const parser = require('handlebars');
 const pcurrent = __dirname;
 const puppeteer = require('puppeteer');
+const moment = require('moment-timezone');
 
-module.exports.compileAll = async function compileAll(array){
-    let all = ''
-    let temporary = {}
-    for(let each of array){
-        temporary = await module.exports.compile(each.part)
-        if(each.obj){
-            all += temporary(each.obj)
-        }else{
-            all += temporary()
-        }
-    }
-
-    return all
-
-}
-
-module.exports.compile = async function(file){
-   return parser.compile(await module.exports.parseFile(pcurrent+'/src/'+file+'.html'))
-}
-
-module.exports.parseFile = function parseFile(caminho){
-    return new Promise ((resolve, reject)=>{
-        fs.readFile(caminho, function read(err, data){
-            resolve(data.toString())
-        })
-    })
-}
-
-module.exports.combinate = async function combinate(imgs, length) {
+function combinate(imgs, length) {
     return new Promise (async (resolve, reject) => {
         resolve(crossjoinMany(imgs));
     });
@@ -58,27 +31,12 @@ function crossjoinMany(a) {
     return first;
 }
 
-module.exports.randomInt = function randomInt(low, high) {
+function randomInt(low, high) {
     return Math.floor(Math.random() * (high - low) + low)
   }
 
 
-module.exports.deleteRecursive = function(path) {
-    if( fs.existsSync(path) ) {
-      fs.readdirSync(path).forEach(function(file,index){
-        var curPath = path + "/" + file;
-        if(fs.lstatSync(curPath).isDirectory()) {
-          deleteFolderRecursive(curPath);
-        } else { 
-          fs.unlinkSync(curPath);
-        }
-      });
-      fs.rmdirSync(path);
-    }
-  };
-  
-
-module.exports.printBloco =  async function printBloco(url, dir, count) {
+async function printBloco(url, dir, count) {
   return new Promise (async (resolve, reject) => {
     count--;
     let browsers = count / 50;
@@ -91,26 +49,25 @@ module.exports.printBloco =  async function printBloco(url, dir, count) {
         range++;
         
         
-        promises.push(this.printerBrowser(url, dir, count, range));
+        promises.push(printerBrowser(url, dir, count, range));
         
   
         await new Promise(resolve => setTimeout(resolve, 5000));
       }
       if (mod > 0) {
-        promises.push(this.printerBrowser(url, dir, count, mod));
+        promises.push(printerBrowser(url, dir, count, mod));
         Promise.all(promises).then(() => { resolve(true) })
       } else {  
         Promise.all(promises).then(() => { resolve(true) })
       }
     } else {
-      await this.standartPrintBloco(url, dir, count)
+      await standartPrintBloco(url, dir, count)
       resolve(true);
     }    
   });
 }
   
-  
-module.exports.printerBrowser =  async function printerBrowser(url, dir, count, range) {
+async function printerBrowser(url, dir, count, range) {
   return new Promise(async (resolve, reject) => {
       const browser = await puppeteer.launch({ args: ['--no-sandbox'], headless: true });
       const page = await browser.newPage();
@@ -151,7 +108,7 @@ module.exports.printerBrowser =  async function printerBrowser(url, dir, count, 
 
       for (let i = range; i <= count; i++) {
         try {
-          await screenshotDOMElement(`#div-${i}`, 0, __dirname + `/src/prints/${dir}/${i}.png`);
+          await screenshotDOMElement(`#div-${i}`, 0, `${dir}/${i}.png`);
         } catch (err) { }
   
         try {
@@ -174,7 +131,7 @@ module.exports.printerBrowser =  async function printerBrowser(url, dir, count, 
 
       for (let i = (range - 50); i < range; i++) {
         try {
-          await screenshotDOMElement(`#div-${i}`, 0, __dirname + `/src/prints/${dir}/${i}.png`);
+          await screenshotDOMElement(`#div-${i}`, 0, `${dir}/${i}.png`);
         } catch (err) { }
   
         try {
@@ -195,7 +152,7 @@ module.exports.printerBrowser =  async function printerBrowser(url, dir, count, 
 }
 
 
-module.exports.standartPrintBloco =  async function printBloco(url, dir, count) {
+async function printBloco(url, dir, count) {
   const browser = await puppeteer.launch({ args: ['--no-sandbox'], headless: true });
   const page = await browser.newPage();
   await page.goto(url);
@@ -222,7 +179,7 @@ module.exports.standartPrintBloco =  async function printBloco(url, dir, count) 
 }
 
 for (let i = 1; i <= count; i++) {
-  await screenshotDOMElement(`#div-${i}`, 0, __dirname + `/src/prints/${dir}/${i}.png`);
+  await screenshotDOMElement(`#div-${i}`, 0, `${dir}/${i}.png`);
 
   await page.evaluate(i => {
     document.querySelector(`#div-${i}`).remove();

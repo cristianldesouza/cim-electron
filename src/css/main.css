@@ -27,6 +27,10 @@ body {
     height: 100%;
 }
 
+.dz-progress {
+    display: none;
+}
+
 .first-main-container {
     float: left; 
     width: 50%;

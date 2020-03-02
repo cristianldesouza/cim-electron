@@ -82,7 +82,7 @@ app.post('/delete-bloco/', async function (req, res) {
 });
 
 
-app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
+app.post('/upload', upload.single( 'file' ), function( req, res, next ) {
     // Metadata about the uploaded file can now be found in req.file
     
     req.file.filename = 'D';

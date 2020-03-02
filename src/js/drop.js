@@ -307,6 +307,15 @@
         return this._updateMaxFilesReachedClass();
       },
       thumbnail: function(file, dataUrl) {
+        //UPLOAD ELECTRON
+
+      let up = {};
+
+      up.bloco = this.element.id;
+      up.url = file.path;
+
+      imgs.push(up);
+
         var thumbnailElement, _i, _len, _ref;
         if (file.previewElement) {
           file.previewElement.classList.remove("dz-file-preview");
@@ -375,7 +384,7 @@
       },
       successmultiple: noop,
       canceled: function(file) {
-        return this.emit("error", file, "Upload canceled.");
+        return //this.emit("error", file, "Upload canceled.");
       },
       canceledmultiple: noop,
       complete: function(file) {
@@ -1150,7 +1159,7 @@
         file.processing = true;
         file.status = Dropzone.UPLOADING;
         file.img = $(`#${this.element.id} .dz-preview`).length;
-        this.emit("processing", file);
+        //this.emit("processing", file);
       }
       if (this.options.uploadMultiple) {
         this.emit("processingmultiple", files);
@@ -1372,7 +1381,7 @@
     };
 
     Dropzone.prototype.submitRequest = function(xhr, formData, files) {
-      return xhr.send(formData);
+      return //xhr.send(formData);
     };
 
     Dropzone.prototype._finished = function(files, responseText, e) {
@@ -1397,11 +1406,11 @@
       for (_i = 0, _len = files.length; _i < _len; _i++) {
         file = files[_i];
         file.status = Dropzone.ERROR;
-        this.emit("error", file, message, xhr);
+        //this.emit("error", file, message, xhr);
         this.emit("complete", file);
       }
       if (this.options.uploadMultiple) {
-        this.emit("errormultiple", files, message, xhr);
+        //this.emit("errormultiple", files, message, xhr);
         this.emit("completemultiple", files);
       }
       if (this.options.autoProcessQueue) {
