@@ -8,6 +8,7 @@ const secondColors = ['teal', 'thistle', 'tomato'];
 let i = 0;
 let imgCount = 0;
 let blocos = [];
+let imgs = [];
 
 $('#qtdColors').on('change', (event) => {
     
@@ -351,6 +352,7 @@ function makeClearEvent(id) {
             formImages.remove();
         } 
         
+
         $(`#bloco-${id}`).css('cursor', 'wait');
         $(`#bloco-${id}`).prop("disabled",true)
 
@@ -358,6 +360,11 @@ function makeClearEvent(id) {
 
         form.removeClass('dz-started');    
 
+        for (img of imgs) {
+            if (img.bloco === `bloco-${blocoN}`) {
+                imgs.splice(imgs.indexOf(img));
+            }
+        }
     
     });
 }

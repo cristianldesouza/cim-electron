@@ -1,5 +1,3 @@
-let imgs = [];
-
 $('#build-button').on('click', async () => {
     let qtdBlocos = $('.img-title').length;
     let colors = [];
