@@ -345,12 +345,12 @@ function switchElements($ele1, $ele2) {
 function makeClearEvent(id) {
     return $(`#clear-bloco-${id}`).on('click', (event) => {
         let blocoN = event.target.id.split('-')[2];
-        let formImages = $(`#bloco-${blocoN} > div.dz-preview.dz-processing.dz-image-preview.dz-success.dz-complete`);
+        let formImages = $(`#bloco-${blocoN} > div.dz-preview.dz-image-preview`);
 
         if (formImages[0]) {
             formImages.remove();
         } 
-
+        
         $(`#bloco-${id}`).css('cursor', 'wait');
         $(`#bloco-${id}`).prop("disabled",true)
 
@@ -358,27 +358,6 @@ function makeClearEvent(id) {
 
         form.removeClass('dz-started');    
 
-
-    // fetch('/delete-bloco/', {
-    //     method: 'POST',
-    //     headers: { 
-    //         'Content-Type': 'application/json', 
-    //         'user': user,
-    //         'bloco': `bloco-${blocoN}`
-    //     },
-    //     body: ''
-    // })
-    // .then((response) => {
-    //     if (response.status == 200) {
-    //         return response.json()
-    //             .then((body) => {
-    //                // $(`#img-menu-container-${id}`).css('cursor', '');
-    //             });
-    //     } else {
-    //         console.log('erro na requisição');
-    //     }
-    // })
-    // .catch();
     
     });
 }

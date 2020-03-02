@@ -8,6 +8,15 @@ $('#build-button').on('click', async () => {
         colors[i] = $(`#c${i+1}`).val();
     }
 
+    for (let i = 0; i < qtdBlocos; i++) {
+        if (!$(`#bloco-${i + 1} > div.dz-preview.dz-image-preview`)[0]) {
+            $('#build-button').attr('disabled', false);
+            $('body').css('cursor', '');
+            $('#build-button').css('background-color', '#28a745');
+            return alert('Não deve haver blocos vazios')
+        }
+    }
+
 
     for (bloco of blocos) {
         bloco.width = $(`#width-bloco-${bloco.id.split('-')[1]}`).val();
