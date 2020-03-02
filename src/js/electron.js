@@ -2,6 +2,12 @@ $('#build-button').on('click', async () => {
     let qtdBlocos = $('.img-title').length;
     let colors = [];
 
+    $('#build-button').attr('disabled', true);
+    $('body').css('cursor', 'wait');
+    $('#build-button').css('cursor', 'wait');
+    $('#build-button').css('background-color', '#848484');
+
+
     for (let i = 0; i < $('#qtdColors').val(); i++) {
         colors[i] = $(`#c${i+1}`).val();
     }
@@ -10,6 +16,7 @@ $('#build-button').on('click', async () => {
         if (!$(`#bloco-${i + 1} > div.dz-preview.dz-image-preview`)[0]) {
             $('#build-button').attr('disabled', false);
             $('body').css('cursor', '');
+            $('#build-button').css('cursor', '');
             $('#build-button').css('background-color', '#28a745');
             return alert('Não deve haver blocos vazios')
         }
@@ -99,8 +106,12 @@ $('#build-button').on('click', async () => {
     }
     catch (err) {}
 
-    console.log('agora vai fdp');
+    $('#build-button').attr('disabled', false);
+    $('body').css('cursor', '');
+    $('#build-button').css('cursor', '');
+    $('#build-button').css('background-color', '#28a745');
 
-    
+
+    alert('Imagens geradas!');
 
 });
