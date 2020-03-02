@@ -38,10 +38,11 @@ function randomInt(low, high) {
 
 async function printBloco(url, dir, count) {
   return new Promise (async (resolve, reject) => {
-    count--;
     let browsers = count / 50;
     let mod = count % 50;
     const promises = [];
+
+    count--;
 
     if (browsers > 1) {
       for (let i = 1; i < browsers; i++) {
@@ -152,7 +153,7 @@ async function printerBrowser(url, dir, count, range) {
 }
 
 
-async function printBloco(url, dir, count) {
+async function standartPrintBloco(url, dir, count) {
   const browser = await puppeteer.launch({ args: ['--no-sandbox'], headless: true });
   const page = await browser.newPage();
   await page.goto(url);

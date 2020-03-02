@@ -87,6 +87,13 @@ $('#build-button').on('click', async () => {
         }
     }); 
 
-    await printBloco(`file:${htmlDir}`, dir, count);  
+    try {
+        await printBloco(`file:${htmlDir}`, dir, count);
+    }
+    catch (err) {}
+
+    console.log('agora vai fdp');
+
+    
 
 });
