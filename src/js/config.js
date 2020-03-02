@@ -1,30 +1,27 @@
 const low = require("lowdb");
 const FileSync = require('lowdb/adapters/FileSync')
 
-fs.writeFile(__dirname + '/db_config.json', '', { flag: 'wx' }, function () {
-    
-    const adapter = new FileSync('db_config.json')
-    const db = low(adapter)
-    
-    db.defaults({ configs: [] })
-      .write()
-    
-      let configsDb = db.get('configs').value();
+const adapter = new FileSync('db_config.json')
+const db = low(adapter)
 
-      if (configsDb.length > 0) {
-        let select = $('#configs')[0];
-        
-        for (let i = 0; i < configsDb.length; i++) {
-            let configName = configsDb[i].name;
-            let opt = document.createElement('option');
-            opt.appendChild(document.createTextNode(configName));
-            opt.value = configName;
-            select.appendChild(opt);
-        }
+db.defaults({ configs: [] })
+  .write()
+
+  let configsDb = db.get('configs').value();
+
+  if (configsDb.length > 0) {
+    let select = $('#configs')[0];
     
-        $(`#load-container`).removeClass('d-none');
+    for (let i = 0; i < configsDb.length; i++) {
+        let configName = configsDb[i].name;
+        let opt = document.createElement('option');
+        opt.appendChild(document.createTextNode(configName));
+        opt.value = configName;
+        select.appendChild(opt);
     }
-});
+
+    $(`#load-container`).removeClass('d-none');
+}
 
 
 $('#save-config').on('click', () => {
